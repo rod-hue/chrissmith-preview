@@ -95,7 +95,7 @@
     const r = bare(S), rs = st.getBoundingClientRect(); f.style.setProperty('--nx', (r.left - rs.left - r.width * .02) + 'px');
     /* "Effect" hangs off the bottom-right of the H; ripple centers on his chest */
     const H = $$('.hero__name span').pop(), e = $('.hero__last'), rh = bare(H);
-    const pr = bare($('.hero__person')); if (e) { const wide = innerWidth > 860; e.style.setProperty('--ex', (wide ? Math.max(rh.right - rs.left - e.offsetWidth, pr.right - rs.left - pr.width * .08) : rh.right - rs.left - e.offsetWidth) + 'px'); e.style.setProperty('--ey', (rh.bottom - rs.top - e.offsetHeight * .18) + 'px'); }
+    const pr = bare($('.hero__person')); if (e) { const wide = innerWidth > 860; const want = wide ? Math.max(rh.right - rs.left - e.offsetWidth, pr.right - rs.left - pr.width * .08) : rh.right - rs.left - e.offsetWidth; e.style.setProperty('--ex', Math.min(want, rs.width - e.offsetWidth - 16) + 'px'); e.style.setProperty('--ey', (rh.bottom - rs.top - e.offsetHeight * .18) + 'px'); }
     const p = $('.hero__person').getBoundingClientRect();
     st.style.setProperty('--rx', (p.left + p.width * .5 - rs.left) + 'px'); st.style.setProperty('--ry', (p.top + p.height * .3 - rs.top) + 'px'); };
   placeFirst(); addEventListener('resize', placeFirst); document.fonts && document.fonts.ready.then(placeFirst);
