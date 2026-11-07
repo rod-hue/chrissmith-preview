@@ -28,7 +28,7 @@
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) links.forEach(l => l.classList.toggle('is-on', l.getAttribute('href') === '#' + e.target.id));
   }), { rootMargin: '-45% 0px -50% 0px' });
-  ['effect', 'about', 'model', 'campaigns', 'company', 'news', 'advisory'].forEach(id => { const el = document.getElementById(id); el && io.observe(el); });
+  ['effect', 'about', 'model', 'engines', 'campaigns', 'company', 'news', 'advisory'].forEach(id => { const el = document.getElementById(id); el && io.observe(el); });
 
   /* ---------- counters ---------- */
   const count = el => {
@@ -131,6 +131,7 @@
     const rv = (sel, opts = {}) => $$(sel).forEach(el => gsap.from(el, Object.assign({ y: 50, opacity: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%' } }, opts)));
     rv('.define__card', { y: 70, rotate: -1.5 }); gsap.from('.ripples li', { x: -40, opacity: 0, stagger: .12, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.ripples', start: 'top 85%' } });
     gsap.from('.define__ripple', { scale: .25, opacity: 0, duration: 2, ease: 'expo.out', scrollTrigger: { trigger: '.define', start: 'top 70%' } });
+    rv('.engines__premise', { y: 40 }); gsap.from('.eng__tab', { y: 30, opacity: 0, stagger: .1, duration: .9, ease: 'expo.out', scrollTrigger: { trigger: '.eng__tabs', start: 'top 88%' } }); gsap.from('.cycle__list li', { y: 40, opacity: 0, stagger: .12, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.cycle', start: 'top 80%' } });
     rv('.lede'); rv('.about__copy > p:not(.lede):not(.kicker)'); rv('.pull'); rv('.facets li', { stagger: .08 });
     rv('.press__note'); rv('.camps__note'); rv('.model__intro'); rv('.night__copy p'); rv('.beyond__copy > p'); rv('.contact__copy > p');
     gsap.utils.toArray('.stat').forEach((s, i) => gsap.from(s, { y: 60, opacity: 0, duration: 1.1, delay: i * .08, ease: 'expo.out', scrollTrigger: { trigger: '.stats', start: 'top 85%' } }));
@@ -193,4 +194,39 @@
   ScrollTrigger.sort();
   addEventListener('load', () => { ScrollTrigger.sort(); ScrollTrigger.refresh(); });
   document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
+})();
+
+/* ---------- Three Engines: tabs + assessment ---------- */
+(() => {
+  const root = document.querySelector('[data-eng]'); if (!root) return;
+  const tabs = [...root.querySelectorAll('.eng__tab')], panels = [...root.querySelectorAll('.eng__panel')];
+  const show = k => {
+    tabs.forEach(t => { const on = t.dataset.k === k; t.classList.toggle('is-on', on); t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
+    panels.forEach(p => { const on = p.id === 'eng-' + k; p.hidden = !on; p.classList.toggle('is-on', on); p.classList.remove('is-in'); if (on) { void p.offsetWidth; p.classList.add('is-in'); } });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => show(t.dataset.k));
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length]; n.focus(); show(n.dataset.k);
+    });
+  });
+  window.__showEngine = show;
+
+  const diag = document.querySelector('[data-diag]'); if (!diag) return;
+  const out = diag.querySelector('.diag__out');
+  const NAME = { community: 'Community', civil: 'Civil Rights', political: 'Political' };
+  const WHY = { community: 'Build trust first: listen, find emerging leaders and create shared ownership.', civil: 'Give people a reason: frame the fight in justice, dignity, faith and shared values.', political: 'Get disciplined: set measurable goals, deadlines and contact targets, then track them.' };
+  const ORDER = ['community', 'civil', 'political'];
+  diag.addEventListener('change', () => {
+    const ans = {}; ORDER.forEach(k => { const c = diag.querySelector(`input[name="dq-${k}"]:checked`); ans[k] = c && c.value; });
+    const answered = ORDER.filter(k => ans[k]).length;
+    const gaps = ORDER.filter(k => ans[k] === 'no');
+    if (!gaps.length && answered < 3) { out.innerHTML = '<p class="diag__idle">Keep going. Answer all three questions.</p>'; return; }
+    if (!gaps.length) { out.innerHTML = '<div class="diag__res"><b>Diagnosis</b><p>All three engines are running. Keep sequencing them as the campaign evolves, and <a href="#contact">talk to Chris</a> about scaling what works.</p></div>'; return; }
+    const lead = gaps[0];
+    const rest = gaps.slice(1).map(k => `<strong>${NAME[k]}</strong>`).join(' and ');
+    out.innerHTML = `<div class="diag__res"><b>Diagnosis</b><p>Lead with the <strong>${NAME[lead]} Engine</strong>. ${WHY[lead]}${rest ? ` Then strengthen ${rest}.` : ''} <a href="#engines" data-open="${lead}">See the ${NAME[lead]} Engine ↑</a></p></div>`;
+    const a = out.querySelector('[data-open]'); a && a.addEventListener('click', () => show(a.dataset.open));
+  });
 })();
