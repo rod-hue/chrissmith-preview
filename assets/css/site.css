@@ -724,3 +724,4 @@ ul,ol{margin:0;padding:0;list-style:none}
   .seq__row{padding:14px}
 }
 @media (max-width:560px){.seq__step{font-size:11px;padding:8px 6px;overflow-wrap:anywhere}}
+.hero__name span{padding:.1em .02em .04em;margin:-.1em -.02em -.04em}
