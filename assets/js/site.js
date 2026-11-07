@@ -140,7 +140,7 @@
     gsap.from('.feat', { y: 60, opacity: 0, duration: 1.1, stagger: .08, ease: 'expo.out', scrollTrigger: { trigger: '.feats', start: 'top 88%' } });
     /* image wipes */
     $$('.about__main, .beyond__img, .reel figure, .advisory__img, .contact__img').forEach(f => {
-      gsap.fromTo(f, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: f, start: 'top 88%' } });
+      gsap.fromTo(f, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.4, ease: 'expo.inOut', clearProps: 'clipPath', scrollTrigger: { trigger: f, start: 'top 88%' } });
     });
     gsap.from('.about__float--a', { yPercent: 30, rotate: 4, ease: 'none', scrollTrigger: { trigger: '.about', start: 'top bottom', end: 'bottom top', scrub: true } });
     gsap.from('.beyond__row figure', { y: 40, opacity: 0, stagger: .1, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.beyond__row', start: 'top 90%' } });
