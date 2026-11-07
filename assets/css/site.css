@@ -593,3 +593,11 @@ ul,ol{margin:0;padding:0;list-style:none}
 .star:first-child{column-span:all;margin-bottom:18px}
 .star:first-child img{max-height:560px;object-fit:cover;object-position:50% 30%}
 .star:first-child b{font-size:clamp(26px,2.6vw,38px)}
+/* advisory CTA: its own band, clear of the cards */
+.advisory__foot{margin-top:clamp(56px,6vw,80px);padding-top:clamp(36px,4vw,48px);border-top:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:18px}
+.advisory__foot .fine{max-width:62ch;line-height:1.6}
+.foot__name{line-height:1!important;padding:.12em .04em .02em;margin-top:-.08em}
+.nav__brand em.the{margin:0 .12em 0 0;color:var(--cream-3)}
+.hero__first{white-space:nowrap}
+.foot__the{font:italic 400 clamp(36px,6vw,96px)/1 var(--f-serif);color:var(--rose);text-align:center;margin:10px 0 -.15em;transform:rotate(-4deg)}
+@media (max-width:560px){.nav__brand em.the{display:inline}.nav__brand{font-size:15px}}

@@ -135,7 +135,7 @@
     rv('.press__note'); rv('.camps__note'); rv('.model__intro'); rv('.night__copy p'); rv('.beyond__copy > p'); rv('.contact__copy > p');
     gsap.utils.toArray('.stat').forEach((s, i) => gsap.from(s, { y: 60, opacity: 0, duration: 1.1, delay: i * .08, ease: 'expo.out', scrollTrigger: { trigger: '.stats', start: 'top 85%' } }));
     gsap.from('.star', { y: 60, opacity: 0, scale: .96, duration: 1.1, stagger: .06, ease: 'expo.out', scrollTrigger: { trigger: '.stars__grid', start: 'top 85%' } });
-    gsap.from('.svc', { y: 50, opacity: 0, duration: 1, stagger: .06, ease: 'expo.out', scrollTrigger: { trigger: '.svcs', start: 'top 85%' } });
+    gsap.from('.svc', { opacity: 0, scale: .96, duration: 1, stagger: .06, ease: 'expo.out', scrollTrigger: { trigger: '.svcs', start: 'top 85%' } });
     gsap.from('.clip', { y: 40, opacity: 0, duration: 1, stagger: .08, ease: 'expo.out', scrollTrigger: { trigger: '.clips', start: 'top 88%' } });
     gsap.from('.feat', { y: 60, opacity: 0, duration: 1.1, stagger: .08, ease: 'expo.out', scrollTrigger: { trigger: '.feats', start: 'top 88%' } });
     /* image wipes */
