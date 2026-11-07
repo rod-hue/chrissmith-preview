@@ -566,3 +566,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 @media (max-width:860px){.stars__head{grid-template-columns:1fr}.stars__grid{grid-template-columns:1fr 1fr;grid-auto-rows:200px}.star--xl{grid-column:span 2;grid-row:span 2}.star--wide{grid-column:span 2}}
 .model__hub{bottom:17%}
 @media (max-width:860px){.star--xl{grid-row:span 1;aspect-ratio:auto}.stars__grid .star--xl{height:auto}.star--xl img{object-position:62% 30%!important}}
+/* model: framed sunset portrait */
+.model__fig{align-items:center}
+.model__photo{width:100%;max-width:420px;aspect-ratio:3/4;object-fit:cover;object-position:50% 22%;border-radius:999px 999px 20px 20px;border:5px solid var(--cream);box-shadow:0 40px 80px -30px rgba(0,0,0,.75),0 0 0 1px rgba(244,236,216,.25),0 0 0 14px rgba(244,236,216,.06);-webkit-mask-image:none!important;mask-image:none!important}
+.model__hub{bottom:auto;top:62%}
+@media (max-width:860px){.model__photo{max-width:340px}}
+@media (max-width:860px){.model__photo{margin:0 auto 18px!important;width:100%}}
