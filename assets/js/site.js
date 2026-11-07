@@ -132,7 +132,7 @@
     rv('.define__card', { y: 70, rotate: -1.5 }); gsap.from('.ripples li', { x: -40, opacity: 0, stagger: .12, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.ripples', start: 'top 85%' } });
     gsap.from('.define__ripple', { scale: .25, opacity: 0, duration: 2, ease: 'expo.out', scrollTrigger: { trigger: '.define', start: 'top 70%' } });
     rv('.engines__premise', { y: 40 }); gsap.from('.eng__tab', { y: 30, opacity: 0, stagger: .1, duration: .9, ease: 'expo.out', scrollTrigger: { trigger: '.eng__tabs', start: 'top 88%' } }); gsap.from('.cycle__list li', { y: 40, opacity: 0, stagger: .12, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: '.cycle', start: 'top 80%' } });
-    rv('.lede'); rv('.about__copy > p:not(.lede):not(.kicker)'); rv('.pull'); rv('.facets li', { stagger: .08 });
+    rv('.lede'); rv('.about__copy > p:not(.lede):not(.kicker)'); rv('.pull'); rv('.facets li', { y: 0, scale: .97, stagger: .08 });
     rv('.press__note'); rv('.camps__note'); rv('.model__intro'); rv('.night__copy p'); rv('.beyond__copy > p'); rv('.contact__copy > p');
     gsap.utils.toArray('.stat').forEach((s, i) => gsap.from(s, { y: 60, opacity: 0, duration: 1.1, delay: i * .08, ease: 'expo.out', scrollTrigger: { trigger: '.stats', start: 'top 85%' } }));
     gsap.from('.star', { y: 60, opacity: 0, scale: .96, duration: 1.1, stagger: .06, ease: 'expo.out', scrollTrigger: { trigger: '.stars__grid', start: 'top 85%' } });
